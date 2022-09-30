@@ -1,6 +1,7 @@
 package com.fimoney.practical.extension
 
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.RatingBar
 import androidx.core.view.isVisible
@@ -50,5 +51,10 @@ fun RatingBar.ratingValue(s: String?) {
             s.toFloat() / 2
         }
     }
+}
+
+@BindingAdapter("isSelected")
+fun View.isSelectedBinding(selected: Boolean) {
+    isSelected = selected
 }
 

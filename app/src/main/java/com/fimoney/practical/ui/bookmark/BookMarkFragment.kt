@@ -2,6 +2,7 @@ package com.fimoney.practical.ui.bookmark
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.fimoney.practical.R
 import com.fimoney.practical.databinding.FragmentBookmarkBinding
 import com.fimoney.practical.extension.launchAndRepeatWithViewLifecycle
@@ -20,6 +21,10 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding>(R.layout.fragment
             bookMarkViewModel.recentBookMark.collect { result ->
                 adapter.submitList(result)
             }
+        }
+
+        binding.imageViewBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

@@ -64,12 +64,14 @@ class HomeViewModel(private val repository: FiMoneyRepository) :
 
     private fun addToBookMark(pos: Int) {
         viewModelScope.launch {
+            dataList[pos].isBookMark = true
             repository.addToBookMark(dataList[pos])
         }
     }
 
     private fun removeFromBookMark(pos: Int) {
         viewModelScope.launch(Dispatchers.IO) {
+            dataList[pos].isBookMark = false
             repository.removeBookMark(dataList[pos])
         }
     }

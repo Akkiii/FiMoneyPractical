@@ -49,6 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_margin="10dp"
+                    app:isSelected="@{model.bookMark}"
                     app:srcCompat="@drawable/sl_bookmark" />
             </FrameLayout>
         </com.google.android.material.card.MaterialCardView>

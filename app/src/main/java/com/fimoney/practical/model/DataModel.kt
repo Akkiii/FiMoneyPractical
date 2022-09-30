@@ -18,5 +18,7 @@ data class DataModel(
     val type: String,
 
     @Json(name = "Poster")
-    val poster: String
+    val poster: String,
+
+    var isBookMark: Boolean = false
 )

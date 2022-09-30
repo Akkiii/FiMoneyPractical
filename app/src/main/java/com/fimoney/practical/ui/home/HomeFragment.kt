@@ -29,6 +29,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var adapter: DataAdapter
     private lateinit var footerAdapter: LoadStateFooterAdapter
     private var type = Constant.TYPE_ALL
+    private var isNavigateToBookmark = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,9 +39,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
             editTextSearch.setDebounce {
                 runOnUiThread {
-                    imageViewClear.isSelected = homeViewModel.queryField.flow.value?.isNotEmpty()!!
-                    homeViewModel.setEvent(HomeUIEvent.LoadData(type))
-                    editTextSearch.dismissKeyboard()
+                    if (!isNavigateToBookmark) {
+                        imageViewClear.isSelected =
+                            homeViewModel.queryField.flow.value?.isNotEmpty()!!
+                        homeViewModel.setEvent(HomeUIEvent.LoadData(type))
+                        editTextSearch.dismissKeyboard()
+                        isNavigateToBookmark = false
+                    }
                 }
             }
 
@@ -83,6 +88,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             })
 
             imageViewBookmark.setOnClickListener {
+                isNavigateToBookmark = true
                 findNavController().navigate(HomeFragmentDirections.toBookmark())
             }
         }
